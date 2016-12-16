@@ -11,7 +11,7 @@ class BaseAlexaRequest(object):
         return self.event['request']['intent']['name']
 
     @property
-    def intent_type(self):
+    def request_type(self):
         return self.event['request']['type']
 
     def __init__(self, event):
@@ -49,22 +49,23 @@ class BaseAlexaRequest(object):
         return output
 
     def get_slot(self, name):
-        return self.intent['slots'][name]['value']
+        try:
+            return self.intent['slots'][name]['value']
+        except AttributeError as ae:
+            logging.warning("No Session Attribute ")
+            return "None"
 
     def response(self):
-        if self.intent_type == 'IntentRequest':
+        if self.request_type == 'IntentRequest':
             intent_name = self.intent_name.replace('.', '_')
             try:
                 return getattr(self, intent_name)
             except AttributeError as ae:
                 logging.info("Intent Not Implemented: %s" % intent_name)
-                return self.build_response(
-                    speechletResponse=self.build_speechlet_response(
-                        title='InvalidIntent',
-                        response_text="My developer didn't finish me. I don't know how to do that.",
-                    )
-                )
-        return 'intentType: {s.intentType}, intentName: {s.intentName}'.format(s=self)
+                raise ae
+        elif self.request_type == "LaunchRequest":
+            return self.LaunchRequest
+        return 'intentType: {s.request_type}'.format(s=self)
 
     @property
     def AMAZON_CancelIntent(self):

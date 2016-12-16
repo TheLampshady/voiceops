@@ -3,4 +3,4 @@ unittests:
 	python -m unittest discover tests/
 
 build-deploy:
-	python -m unittest discover tests/
+	zip -r alexa.zip src -x *.pyc*
