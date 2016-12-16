@@ -1,0 +1,14 @@
+*~
+*.pyc
+*.DS_Store
+.idea
+*.pem
+*.p12
+*.coverage
+*.log
+*.mo
+*.zip
+.sass-cache
+*.datastore
+node_modules
+reports/

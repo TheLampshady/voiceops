@@ -1,0 +1,76 @@
+import logging
+
+class BaseAlexaRequest(object):
+
+    @property
+    def intent(self):
+        return self.event['request']['intent']
+
+    @property
+    def intent_name(self):
+        return self.event['request']['intent']['name']
+
+    @property
+    def intent_type(self):
+        return self.event['request']['type']
+
+    def __init__(self, event):
+        self.event = event
+        self.sessionAttributes = self.event['session']['attributes']
+
+    def build_response(self, speechletResponse):
+        return dict(
+            version='1.0',
+            sessionAttributes=self.sessionAttributes,
+            response=speechletResponse,
+        )
+
+    def build_speechlet_response(self, title, response_text, reprompt_text=None):
+        output = dict(
+            outputSpeech=dict(
+                type='PlainText',
+                text=response_text,
+            ),
+            card=dict(
+                type='Simple',
+                title=title,
+                content=response_text,
+            ),
+            shouldEndSession=True,
+        )
+        if reprompt_text is not None:
+            output['reprompt'] = dict(
+                outputSpeech=dict(
+                    type='PlainText',
+                    text=reprompt_text,
+                )
+            )
+            output['shouldEndSession'] = False
+        return output
+
+    def get_slot(self, name):
+        return self.intent['slots'][name]['value']
+
+    def response(self):
+        if self.intent_type == 'IntentRequest':
+            intent_name = self.intent_name.replace('.', '_')
+            try:
+                return getattr(self, intent_name)
+            except AttributeError as ae:
+                logging.info("Intent Not Implemented: %s" % intent_name)
+                return self.build_response(
+                    speechletResponse=self.build_speechlet_response(
+                        title='InvalidIntent',
+                        response_text="My developer didn't finish me. I don't know how to do that.",
+                    )
+                )
+        return 'intentType: {s.intentType}, intentName: {s.intentName}'.format(s=self)
+
+    @property
+    def AMAZON_CancelIntent(self):
+        return self.build_response(
+            speechletResponse=self.build_speechlet_response(
+                title='CancelIntent',
+                response_text='goodbye',
+            )
+        )
