@@ -77,3 +77,22 @@ class BaseAlexaRequest(object):
                 response_text='goodbye',
             )
         )
+
+    @property
+    def AMAZON_StopIntent(self):
+        return self.build_response(
+            speechletResponse=self.build_speechlet_response(
+                title='Stop Intent',
+                response_text='goodbye',
+            )
+        )
+
+    @property
+    def AMAZON_HelpIntent(self):
+        return self.build_response(
+            speechletResponse=self.build_speechlet_response(
+                title='Help Intent',
+                response_text="You don't need help to member",
+                reprompt_text="Try to member."
+            )
+        )
