@@ -1,5 +1,5 @@
-from my_intent import MyAlexaRequest
+from berry_intent import MemberRequest
 
 
 def lambda_handler(event, context):
-    return MyAlexaRequest(event=event).response()
+    return MemberRequest(event=event).response()

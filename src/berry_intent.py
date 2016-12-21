@@ -7,13 +7,21 @@ SLOT_NAME = 'berry'
 
 member_list = [
     "Star Wars",
-    "Chewbacca",
-    "Tantauns",
-    "Ice Planet Hoth"
+    "Chew Bacca",
+    "Tawn Tawns",
+    "Ice Planet Hoth",
+    "Han Solo"
+]
+
+member_response = [
+    "I member {b}",
+    "Oh yes, {b}. I member",
+    "Oooo {b}, yes!",
+    "I love {b}! I member {b}"
 ]
 
 
-class MyAlexaRequest(BaseAlexaRequest):
+class MemberRequest(BaseAlexaRequest):
 
     @property
     def GetMember(self):
@@ -21,14 +29,13 @@ class MyAlexaRequest(BaseAlexaRequest):
 
         if self.get_slot(name=SLOT_NAME):
             value = self.get_slot(name=SLOT_NAME)
-            speech_output = "I member %s. " % value
+            speech_output = random.choice(member_response).format(b=value)
         else:
-            speech_output = "I member. " \
-                            "Do you member?"
+            speech_output = "I member. Do you member?"
             reprompt_text = "Do you member?"
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
-                title='Getmember',
+                title='I Member',
                 response_text=speech_output,
                 reprompt_text=reprompt_text
             )
@@ -38,18 +45,16 @@ class MyAlexaRequest(BaseAlexaRequest):
     def SetMember(self):
         value = self.get_slot(name=SLOT_NAME)
         if value:
-            speech_output = "I love " + \
-                            value + ". "
+            speech_output = random.choice(member_response).format(b=value)
             reprompt_text = "Do you member?"
         else:
-            speech_output = "Naw. " \
-                            "You member?."
+            speech_output = "Naw. You member?."
             reprompt_text = "Do you member?"
 
         self.sessionAttributes[SLOT_NAME] = value
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
-                title='SetMember',
+                title='You Member',
                 response_text=speech_output,
                 reprompt_text=reprompt_text
             )
