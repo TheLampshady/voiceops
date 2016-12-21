@@ -1,18 +1,7 @@
-WhatsMyColorIntent what's my favorite color
-WhatsMyColorIntent what is my favorite color
-WhatsMyColorIntent what's my color
-WhatsMyColorIntent what is my color
-WhatsMyColorIntent my color
-WhatsMyColorIntent my favorite color
-WhatsMyColorIntent get my color
-WhatsMyColorIntent get my favorite color
-WhatsMyColorIntent give me my favorite color
-WhatsMyColorIntent give me my color
-WhatsMyColorIntent what my color is
-WhatsMyColorIntent what my favorite color is
-WhatsMyColorIntent yes
-WhatsMyColorIntent yup
-WhatsMyColorIntent sure
-WhatsMyColorIntent yes please
+GetMember member
+GetMember you member
+GetMember do you member
 
-MyColorIsIntent my favorite color is {Color}
+SaveMember {berry}
+SaveMember member {berry}
+SaveMember you member {berry}

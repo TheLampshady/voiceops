@@ -1,0 +1,1 @@
+Set handler to lambda_function.lambda_handler
