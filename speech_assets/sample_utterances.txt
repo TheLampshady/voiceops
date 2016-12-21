@@ -2,6 +2,6 @@ GetMember member
 GetMember you member
 GetMember do you member
 
-SaveMember {berry}
-SaveMember member {berry}
-SaveMember you member {berry}
+SetMember {berry}
+SetMember member {berry}
+SetMember you member {berry}

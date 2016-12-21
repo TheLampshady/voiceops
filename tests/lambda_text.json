@@ -16,7 +16,7 @@
     "locale": "en-US",
     "timestamp": "2016-12-16T16:27:31Z",
     "intent": {
-      "name": "SaveMember",
+      "name": "SetMember",
       "slots": {
         "berry": {
           "name": "berry",

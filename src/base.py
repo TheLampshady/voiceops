@@ -1,5 +1,6 @@
 import logging
 
+
 class BaseAlexaRequest(object):
 
     @property
@@ -16,7 +17,8 @@ class BaseAlexaRequest(object):
 
     def __init__(self, event):
         self.event = event
-        self.sessionAttributes = self.event['session']['attributes']
+        session = event.get("session", {})
+        self.sessionAttributes = session.get("attributes", {})
 
     def build_response(self, speechletResponse):
         return dict(
@@ -51,9 +53,9 @@ class BaseAlexaRequest(object):
     def get_slot(self, name):
         try:
             return self.intent['slots'][name]['value']
-        except AttributeError as ae:
+        except KeyError as ae:
             logging.warning("No Session Attribute ")
-            return "None"
+            return None
 
     def response(self):
         if self.request_type == 'IntentRequest':

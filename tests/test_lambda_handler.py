@@ -40,13 +40,13 @@ class TestLambda(unittest.TestCase):
 
         self.assertTrue(response.get("shouldEndSession", False), "The session did not end.")
 
-    def test_lambda_sets_color(self):
+    def test_lambda_sets_berry(self):
         mock_intent = {
-            "name": "MyColorIsIntent",
+            "name": "SetMember",
             "slots": {
-                "Color": {
-                      "name": "Color",
-                      "value": "red"
+                "berry": {
+                  "name": "berry",
+                  "value": "star wars"
                 }
             }
         }
@@ -58,4 +58,18 @@ class TestLambda(unittest.TestCase):
         attributes = result.get("sessionAttributes")
 
         self.assertFalse(response.get("shouldEndSession", True), "The session ended.")
-        self.assertEqual(attributes.get("favoriteColor", ""), "red", "The color was not saved.")
+        self.assertEqual(attributes.get("berry", ""), "star wars", "I don't memeber")
+
+    def test_lambda_gets_berry(self):
+        mock_intent = {
+            "name": "GetMember",
+        }
+        mock_event = self.get_mock_event(intent=mock_intent)
+
+        result = lambda_handler(mock_event, {})
+        self.assertTrue(result)
+        response = result.get("response")
+        attributes = result.get("sessionAttributes")
+
+        self.assertFalse(response.get("shouldEndSession", True), "The session ended.")
+        self.assertFalse(attributes, "Attributes found")

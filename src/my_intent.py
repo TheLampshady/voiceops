@@ -16,7 +16,7 @@ member_list = [
 class MyAlexaRequest(BaseAlexaRequest):
 
     @property
-    def Getmember(self):
+    def GetMember(self):
         reprompt_text = None
 
         if self.get_slot(name=SLOT_NAME):
@@ -35,7 +35,7 @@ class MyAlexaRequest(BaseAlexaRequest):
         )
 
     @property
-    def SaveMember(self):
+    def SetMember(self):
         value = self.get_slot(name=SLOT_NAME)
         if value:
             speech_output = "I love " + \
@@ -49,7 +49,7 @@ class MyAlexaRequest(BaseAlexaRequest):
         self.sessionAttributes[SLOT_NAME] = value
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
-                title='Savemember',
+                title='SetMember',
                 response_text=speech_output,
                 reprompt_text=reprompt_text
             )
