@@ -1,7 +1,12 @@
-GetMember member
-GetMember you member
-GetMember do you member
+CreateAWS to create an Amazon Web Service
+CreateAWS create Amazon Web Service
+CreateAWS to create an A.W.S
+CreateAWS create A.W.S
 
-SetMember {berry}
-SetMember member {berry}
-SetMember you member {berry}
+CreateGCE to create Google Comupte Engine
+CreateGCE create Google Comupte Engine
+CreateGCE to create G.C.E
+CreateGCE create G.C.E
+
+CurrentStatus whats my current {context}
+CurrentStatus what am i working on

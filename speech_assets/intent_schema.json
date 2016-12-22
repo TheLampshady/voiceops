@@ -1,15 +1,17 @@
 {
   "intents": [
     {
-      "intent": "Kubernetes",
+      "intent": "CreateAWS"
+    }, {
+      "intent": "CreateGCE"
+    }, {
+      "intent": "CurrentStatus",
       "slots": [
         {
-          "name": "berry",
-          "type": "GENERIC"
+          "name": "context",
+          "type": "CONTEXT_SYNONYMS"
         }
       ]
-    }, {
-      "intent": "GetMember"
     }, {
       "intent": "AMAZON.HelpIntent"
     }, {

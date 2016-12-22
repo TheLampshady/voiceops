@@ -1,5 +1,7 @@
-from berry_intent import MemberRequest
+import logging
+from voiceops_intent import VoiceOpsRequest
 
 
-def lambda_handler(event, context):
-    return MemberRequest(event=event).response()
+def lambda_handler(event, context={}):
+    request = VoiceOpsRequest(event=event)
+    return request.response()
