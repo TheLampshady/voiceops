@@ -92,7 +92,7 @@ class BaseAlexaRequest(object):
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
                 title='Help Intent',
-                response_text="You don't need help to member",
-                reprompt_text="Try to member."
+                response_text="Read the Manual.",
+                reprompt_text="R T F M"
             )
         )

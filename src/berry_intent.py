@@ -75,3 +75,13 @@ class MemberRequest(BaseAlexaRequest):
                 reprompt_text=reprompt_text
             )
         )
+
+    @property
+    def AMAZON_HelpIntent(self):
+        return self.build_response(
+            speechletResponse=self.build_speechlet_response(
+                title='Help Intent',
+                response_text="You don't need help to member",
+                reprompt_text="Try to member."
+            )
+        )

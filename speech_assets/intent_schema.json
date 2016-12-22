@@ -1,7 +1,7 @@
 {
   "intents": [
     {
-      "intent": "SetMember",
+      "intent": "Kubernetes",
       "slots": [
         {
           "name": "berry",
